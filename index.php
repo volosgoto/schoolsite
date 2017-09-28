@@ -1,11 +1,5 @@
 <?php
-// Установка локализации и даты
-setlocale(LC_ALL, "russian");
-$day = strftime('%d');
-$mon = strftime('%m');
-// %B масяц $mon = iconv('windows-1251', 'utf-8', $mon);
-$year = strftime('%Y');
-
+require_once "inc/lib.inc.php";
 ?>
 
 <!DOCTYPE html>

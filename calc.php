@@ -59,6 +59,7 @@
   <div id="footer">
     <!-- Нижняя часть страницы -->
       <?php
+      require_once "inc/lib.inc.php";
       require_once "inc/bottom.inc.php";
       ?>
     <!-- Нижняя часть страницы -->

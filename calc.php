@@ -58,7 +58,9 @@
   </div>
   <div id="footer">
     <!-- Нижняя часть страницы -->
-    &copy; Супер Мега Веб-мастер, 2000 &ndash; 2015
+      <?php
+      require_once "inc/bottom.inc.php";
+      ?>
     <!-- Нижняя часть страницы -->
   </div>
 </body>

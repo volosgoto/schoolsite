@@ -45,7 +45,8 @@
     <!-- Таблица -->
     <table border='1' width="200">
         <?php
-            drowTable($cols, $rows, $color);
+        include_once "inc/lib.inc.php";
+        drowTable($cols, $rows, $color);
         ?>
     </table>
     <!-- Таблица -->

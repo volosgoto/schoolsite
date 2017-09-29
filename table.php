@@ -1,17 +1,29 @@
+<?php
 
+if ( $_SERVER['REQUEST_METHOD'] == 'POST') {
+    $rows = abs ((int)$_POST['rows']);
+    $cols = abs ((int)$_POST['cols']);
+    $color = $_POST['color'];
+} else {
+    $rows = 10;
+    $cols = 10;
+    $color = 'yellow';
+}
+
+?>
     <!-- Область основного контента -->
-    <form action=''>
+    <form action='<?php $_SERVER['REQUEST_URI']?>' method='POST'>
       <label>Количество колонок: </label>
       <br />
-      <input name='cols' type='text' value="" />
+      <input name='cols' type='text' value="<?php echo $_POST['cols'] ?? $cols; ?>" />
       <br />
       <label>Количество строк: </label>
       <br />
-      <input name='rows' type='text' value="" />
+      <input name='rows' type='text' value="<?php echo $_POST['rows'] ?? $rows; ?>" />
       <br />
       <label>Цвет: </label>
       <br />
-      <input name='color' type='text' value="" />
+      <input name='color' type='text' value="<?php echo $_POST['color'] ?? $color; ?>" />
       <br />
       <br />
       <input type='submit' value='Создать' />

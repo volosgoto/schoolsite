@@ -1,105 +1,36 @@
 <?php
-//error_reporting(0);
-require_once "inc/lib.inc.php";
-//set_error_handler('my_error_handler');
+$url = $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+require_once 'db.php';
+?>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Guestbook</title>
+</head>
+<body>
+<p>Список записей в гостевой книге</p>
 
-$title = 'Главная страница';
-$wellcome = 'Добро пожадовать';
-$header = $wellcome . ', Гость!';
-
-$id = $_GET['id'] ?? '';
-
-if ( !empty($id) ) {
-$id = strtolower( trim(strip_tags($_GET['id'])));
-    switch ($id){
-        case ('about'):
-            $title = 'О нас';
-            $wellcome = 'О нашем сате';
-                break;
-        case ('contact'):
-            $title = 'Контакты';
-            $wellcome = 'Обратная связь';
-            break;
-
-        case ('table'):
-            $title = 'Таблица умножения';
-            $wellcome = 'Таблица умножения';
-            break;
-        case ('calc'):
-            $title = 'Калькулятор';
-            $wellcome = 'Калькулятор';
-            break;
-    }
-}
-
+<?php
+require_once 'action.php';
 ?>
 
-<!DOCTYPE html>
-<html>
 
-<head>
-    <title><?php echo $title?></title>
-    <meta charset="utf-8"/>
-    <link rel="stylesheet" href="style.css"/>
-</head>
+<p>Добавить записть</p>
+<form action="action.php" method="post">
 
-<body>
-<div id="header">
-    <!-- Верхняя часть страницы -->
-    <?php
-    require_once "inc/top.inc.php";
-    ?>
-    <!-- Верхняя часть страницы -->
-</div>
+    <input name="url" type="hidden" value=<?php echo $url; ?> />
 
-<div id="content">
-    <!-- Заголовок -->
-    <h1><?php echo $header?></h1>
-    <!-- Заголовок -->
-
-    <blockquote>
-        <?php echo 'Сегодня: ' . $day . '-' . $mon . '-' . $year; ?>
-    </blockquote>
-
-    <!-- Область основного контента -->
-    <?php
-    require_once "inc/index.inc.php";
-    switch ($id) {
-        case ('about'):
-            require_once 'about.php';
-            break;
-        case ('contact'):
-            require_once  'contact.php';
-            break;
-
-        case ('table'):
-            require_once  'table.php';
-            break;
-        case ('calc'):
-            require_once 'calc.php';
-            $header = 'Калькулятор';
-            break;
-    }
-    ?>
-    <!-- Область основного контента -->
-</div>
-<div id="nav">
-    <!-- Навигация -->
-    <h2>Навигация по сайту</h2>
-    <!-- Меню -->
-    <?php
-    require_once "inc/menu.inc.php";
-    ?>
-    <!-- Меню -->
-    <!-- Навигация -->
-</div>
-<div id="footer">
-    <!-- Нижняя часть страницы -->
-    <?php
-    require_once "inc/bottom.inc.php";
-    ?>
-    <!-- Нижняя часть страницы -->
-</div>
+    <p>Введите имя</p>
+    <p><input type="text" name="name" value=""></p>
+    <p>Введите email</p>
+    <p><input type="text" name="email" value=""></p>
+    <p>Введите текст</p>
+    <p><textarea rows="10" cols="45" name="textarea"></textarea></p>
+    <p><input type="submit" name="submit" value="Отправить!"> </p>
+    <p><input type="submit" name="delete" value="Удалить!"></p>
+</form>
 </body>
-
 </html>
